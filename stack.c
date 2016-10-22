@@ -39,7 +39,7 @@ int main(int argc, char const *argv[])
 	k = 0;
 	stack = (int *)malloc(sizeof(int) * MAX);
 
-	while(~scanf("%d%d", &op, &x))
+	while(~scanf("%d", &op))
 	{
 		if(op == -1)
 			break;
@@ -47,6 +47,7 @@ int main(int argc, char const *argv[])
 		switch(op)
 		{
 			case 1:
+				scanf("%d", &x);
 				Push(x);
 				break;
 			case 2:
