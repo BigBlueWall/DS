@@ -12,9 +12,9 @@ typedef struct task
     int x;
     int p;
     
-}TASK;
+}TASK, *TASKP;
 
-TASK heap[MAX];
+TASKP heap;
 int k;
 
 void swap(int i, int j)
@@ -34,7 +34,7 @@ void Insert(int x, int p)
     {
         (heap[k]).x = x;
         (heap[k++]).p = p;
-        for(i = k-1; i > 0; i /= 2)
+        for(i = k-1; i > 0; i = (i-1)/2)
         {
             if((heap[i]).p > (heap[(i-1)/2]).p)
                 swap(i, (i-1)/2);
@@ -102,6 +102,7 @@ int main(int argc, char const *argv[])
     int op, x, p;
     
     k = 0;
+    heap = (TASKP)malloc(sizeof(TASK) * MAX);
     
     while(~scanf("%d", &op))
     {
@@ -127,6 +128,9 @@ int main(int argc, char const *argv[])
                 break;
         }
     }
+
+    free(heap);
+    heap = NULL;
     
     return 0;
 }
